@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 
 
 async function app(){
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch(/*{headless: false}*/);
     const page = await browser.newPage();
     do {
 
