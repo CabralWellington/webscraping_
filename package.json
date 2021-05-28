@@ -1,0 +1,27 @@
+{
+  "name": "mob2b_refactory",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "mysql2-promise": "^0.1.4",
+    "nodemailer": "^6.6.0",
+    "puppeteer": "^9.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CabralWellington/webscraping_.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CabralWellington/webscraping_/issues"
+  },
+  "homepage": "https://github.com/CabralWellington/webscraping_#readme",
+  "description": ""
+}
