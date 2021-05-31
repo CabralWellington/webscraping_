@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("../db/db");
 var moment = require('moment'); // require
 
 async function run(buffer){

@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("../db/db");
 const email = require("./sendemail")
 var moment = require('moment'); // require
 InfoBuffer = [];
