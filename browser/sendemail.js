@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const db = require("../db/db");
+const db = require("../database/db");
 var moment = require('moment'); 
 
 async function senderMail(page,id_mob2b) {
