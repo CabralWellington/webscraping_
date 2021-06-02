@@ -38,7 +38,7 @@ async function trackerTicket(page){
 async function applyFilterDisable(page){
     await page.select('#TrackerTicketStatusCode', '')
     await page.select('#table_length > label > select', '800')
-    const newInputValue = "01/03/2021 00:00:01";
+    const newInputValue = "01/05/2021 00:00:01";
     await page.evaluate(val => document.querySelector("#StartDate").value = val, newInputValue);
     await page.evaluate(val => document.querySelector("#table > thead > tr > th:nth-child(5)").click());
     await page.evaluate(val => document.querySelector("#table > thead > tr > th:nth-child(5)").click());
