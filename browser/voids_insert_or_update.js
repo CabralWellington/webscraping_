@@ -106,10 +106,11 @@ async function update_serial(numero_atendimento,page){
 
 async function update_observacao(id_mob2b,page){
     const observacao = await page.evaluate(() => document.querySelector("#Notes").textContent.trim())
+    const atend_tipo = await page.evaluate(() => document.querySelector("#s2id_TrackerTicketSLAKey > a").text.trim()); 
     const conn = await db.connect();
-    const sql = "UPDATE atendimentos SET observacao=? WHERE id_mob2b=?";
-    const values = [observacao,id_mob2b];
-    console.log(sql+values[0],values[1])
+    const sql = "UPDATE atendimentos SET observacao=?, atend_tipo=? WHERE id_mob2b=?";
+    const values = [observacao,atend_tipo,id_mob2b];
+    console.log(sql+values[0],values[1],values[2])
     return await conn.query(sql, values);
 }
 
