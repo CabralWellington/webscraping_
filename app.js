@@ -7,7 +7,7 @@ var moment = require('moment'); // require
 
 
 async function app(){
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch(/*{headless: false}*/);
     const page = await browser.newPage();
 
 
