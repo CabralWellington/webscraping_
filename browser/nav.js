@@ -22,14 +22,14 @@ async function login(page){
         await page.type('#Email', 'administrador@amazoncopy.com.br');
         await page.type('#Password', 'Wco#$oliveira');
         await page.click('.buttonLogin');
-        await page.waitForTimeout(30000);
+        await page.waitForTimeout(600000);
     }
 
 }
 
 async function trackerTicket(page){
     await page.goto('http://mob2b-backend.cloudapp.net/Tracker/TrackerTicket');
-    await page.waitForTimeout(30000);
+    await page.waitForTimeout(60000);
     await ctrlReadPage2(await applyFilterDisable(page),page);
     await ctrlReadPage(await applyFilterEnable(page),page);
     await ctrlReadPage(await applyFilterEnable2(page),page);

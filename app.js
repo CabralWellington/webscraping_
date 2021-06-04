@@ -20,10 +20,10 @@ async function app(){
                 console.log("No horario de trabalho")
                 try {
                     await page.goto('http://mob2b-backend.cloudapp.net/User/LogOn?ReturnUrl=%2f');
-                    await page.waitForTimeout(10000);
+                    await page.waitForTimeout(30000);
                     await navigation.login(page)
                     await bufferProcess.runBuffer_insert_or_update(await navigation.run(page),browser);
-                    await page.waitForTimeout(10000);
+                    await page.waitForTimeout(30000);
                     await bufferInfo.run(page)
                 } catch (error) {
                     console.log("Erro geral")
