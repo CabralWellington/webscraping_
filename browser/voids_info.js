@@ -8,7 +8,7 @@ async function run(page){
 async function search_info(page){
     
     const conn = await db.connect();
-    const [rows] = await conn.query('select id_mob2b from atendimentos inner join setor on nome_tec = nome_tec_setor where atend_status ="Fechado" and _setor = "Ass" and send_email = "X_X" limit 30');
+    const [rows] = await conn.query('select id_mob2b from atendimentos inner join setor on nome_tec = nome_tec_setor where atend_status ="Fechado" and _setor = "Ass" and send_email = "X_X" and observacao not like "leitura" and numero_serie !="" and dt_inicio != "2000-01-01 00:00:00"');
     console.log(rows.length)
     i = 0;
     do{

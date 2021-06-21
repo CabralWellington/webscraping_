@@ -22,7 +22,7 @@ async function login(page){
         await page.type('#Email', 'administrador@amazoncopy.com.br');
         await page.type('#Password', 'Wco#$oliveira');
         await page.click('.buttonLogin');
-        await page.waitForTimeout(600000);
+        await page.waitForTimeout(60000);
     }
 
 }
@@ -42,24 +42,25 @@ async function applyFilterDisable(page){
     await page.evaluate(val => document.querySelector("#StartDate").value = val, newInputValue);
     await page.evaluate(val => document.querySelector("#table > thead > tr > th:nth-child(5)").click());
     await page.evaluate(val => document.querySelector("#table > thead > tr > th:nth-child(5)").click());
+    await page.waitForTimeout(15000);
     await page.evaluate(val => document.querySelector("#Active").value = "False");
     await page.evaluate(val => document.querySelector("#btnApply").click());
-    await page.waitForTimeout(60000);
+    await page.waitForTimeout(30000);
     return sizePage = await page.evaluate(() => document.querySelector("#table > tbody").rows.length);
 }
 
 async function applyFilterEnable(page){
-    await page.waitForTimeout(60000);
+    await page.waitForTimeout(30000);
     await page.evaluate(val => document.querySelector("#Active").value = "True");
     await page.evaluate(val => document.querySelector("#btnApply").click());
-    await page.waitForTimeout(60000);
+    await page.waitForTimeout(30000);
     return sizePage = await page.evaluate(() => document.querySelector("#table > tbody").rows.length);
 }
 
 async function applyFilterEnable2(page){
-    await page.waitForTimeout(60000);
+    await page.waitForTimeout(30000);
     await page.evaluate(val => document.querySelector("#table_wrapper > div:nth-child(3) > div > div.pull-right > div > ul > li.next > a").click());
-    await page.waitForTimeout(60000);
+    await page.waitForTimeout(240000);
     return sizePage = await page.evaluate(() => document.querySelector("#table > tbody").rows.length);
 }
 
