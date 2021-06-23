@@ -32,9 +32,11 @@ async function login(page1,page2){
 async function ctrlReadPage(sizePage1,sizePage2,page1,page2){
     console.log(moment().format("HH:mm:ss") + " Lendo os resultado das paginas");
     for(i=1;i<sizePage1+1;i++){
+         console.log(moment().format("HH:mm:ss") + " Lendo os resultado das paginas da primeira pagina");
          await readPage1(i,page1);
     }
     for(i=1;i<sizePage2+1;i++){
+        console.log(moment().format("HH:mm:ss") + " Lendo os resultado das paginas da segunda pagina pagina");
          await readPage2(i,page2);
     }
 

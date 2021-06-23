@@ -18,15 +18,21 @@ async function search_info(page){
         await console.log(rows[i].id_mob2b); 
         await page.goto('http://mob2b-backend.cloudapp.net/Tracker/TrackerTicket/Detail/'+rows[i].id_mob2b);
         await page.waitForTimeout(10000);
-        await page.evaluate(val => document.querySelector("#teste > i").click());
-        await page.waitForTimeout(10000);
-        sizePage = await page.evaluate(() => document.querySelector("#body-form > table > tbody").rows.length);
+        conn.query("update atendimentos set send_email = 'OK' where id_mob2b = '"+ rows[i].id_mob2b+"'")
+        try {
+            await page.evaluate(val => document.querySelector("#teste > i").click());
+            await page.waitForTimeout(10000);
+            sizePage = await page.evaluate(() => document.querySelector("#body-form > table > tbody").rows.length);
         
-        console.log(sizePage)
-        for(var j=1;j<sizePage+1;j++){  
-        sendBuffer.unshift(await getInfoPage(page,j,rows[i].id_mob2b))
+             console.log(sizePage)
+            for(var j=1;j<sizePage+1;j++){  
+                sendBuffer.unshift(await getInfoPage(page,j,rows[i].id_mob2b))
+            }
+                await email.senderMail(page,rows[i].id_mob2b);
+        } catch (error) {
+            
         }
-        await email.senderMail(page,rows[i].id_mob2b);
+        
     i++;
     }while(i<rows.length);
 }

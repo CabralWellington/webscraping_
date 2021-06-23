@@ -3,9 +3,10 @@ const db = require("../database/db");
 var moment = require('moment'); 
 
 async function senderMail(page,id_mob2b) {
+ try {
   const conn = await db.connect();
   const [rows] = await conn.query("select * from atendimentos where id_mob2b = '"+ id_mob2b+"'")
-  conn.query("update atendimentos set send_email = 'OK' where id_mob2b = '"+ id_mob2b+"'")
+
   var cliente = await rows[0].nome_cliente
   var dtcria =  await  moment(rows[0].dt_abertura, 'YYYY-MM-DD HH:mm:ss', true).format('DD/MM/YYYY HH:mm');       
   var dtinicio = await  moment(rows[0].dt_inicio, 'YYYY-MM-DD HH:mm:ss', true).format('DD/MM/YYYY HH:mm'); 
@@ -19,7 +20,12 @@ async function senderMail(page,id_mob2b) {
   body = await page.evaluate(() => document.querySelector("#body-form").outerHTML);
 
   var bodyfull = "<h2>Informações sobre o atendimento</h2>" + "<br>Nome do cliente: "  +  cliente   +"<br>Abertura do atendimento: " + dtcria + "<br>" + "Início do atendimento: " + dtinicio + "<br>" + "Fechamento do atendimento: " + dtfecha + "<br>" + "Solicitação: " + obs +"<br>Técnico responsável: "+ tecnico +"<br><br>" + "<h3> Formulário técnico</h3>"+ body + "<br> Em anexo a assinatura do cliente.";
-  await send(qtdAnexo,bodyfull,k,page,remetente)
+  await send(qtdAnexo,bodyfull,k,page,remetente) 
+
+
+ } catch (error) {
+   
+ }
 }
 
 module.exports = {senderMail}

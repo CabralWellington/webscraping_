@@ -8,8 +8,8 @@ var moment = require('moment'); // require
 
 
 async function app(){
-    const browser1 = await puppeteer.launch(/*{headless: false}*/);
-    const browser2 = await puppeteer.launch(/*{headless: false}*/);
+    const browser1 = await puppeteer.launch({headless: false});
+    const browser2 = await puppeteer.launch({headless: false});
     const page2 = await browser2.newPage();
     const page1 = await browser1.newPage();
     
@@ -22,7 +22,7 @@ async function app(){
                 console.log("No horario de trabalho")
                 try {
                     await ctrlPage(page1,page2);
-                    await ctrlPage1(page1,page2);
+                    await ctrlPage1(page1,page2,browser1);
                     await ctrlPage3(browser1);
                     await bufferInfo.run(page1)
                 } catch (error) {
@@ -49,7 +49,7 @@ async function ctrlPage(page1,page2){
 
 
 //Pesquisando chamados
-async function ctrlPage1(page1,page2){
+async function ctrlPage1(page1,page2,browser1){
     await page1.goto('http://mob2b-backend.cloudapp.net/Tracker/TrackerTicket');
     await page2.goto('http://mob2b-backend.cloudapp.net/Tracker/TrackerTicket');
     await page1.waitForTimeout(10000)
@@ -81,6 +81,7 @@ async function ctrlPage1(page1,page2){
     
     //Lendo as paginas
     await voids.ctrlReadPage(sizePage1,sizePage2,page1,page2);
+    await bufferProcess.runBuffer_insert_or_update(voids.getBufferList(),browser1)
     await console.log(moment().format("HH:mm:ss") + " Finalizado de ler as paginas");
 
 
@@ -99,7 +100,7 @@ async function ctrlPage2(page2){
 
 //inicia a o processo de atualização
 async function ctrlPage3(browser1){
-    await bufferProcess.runBuffer_insert_or_update(voids.getBufferList(),browser1);
+    await bufferProcess.runBuffer_insert_or_update(await voids.getBufferList(),browser1);
 }
 
 

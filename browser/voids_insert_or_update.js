@@ -8,7 +8,7 @@ async function run(buffer){
 async function insert_or_update(buffer){
     const conn = await db.connect();
     const [rows] = await conn.query('SELECT * FROM atendimentos where numero_atendimento = ' + buffer[8] );
-   // console.log(rows.length>0)
+    console.log(rows.length>0)
 
     if(rows.length>0){ 
         update(buffer);
